@@ -3,12 +3,9 @@
 	<head>
 		<title>Sombrero Selector</title>
 		<link rel="stylesheet" type="text/css" href="Estilos/estilo_index.css">
-		<script type="module" src="./JS/main.js">
-			//Importamos lo necesario del main.js
-			import {Casas,Colegios} from "./JS/main.js";
-		</script>
+		<script type="text/javascript"></script>
 	</head>
-	<body onload="arrancar">
+	<body onload="arrancar()">
 		<section>
 			<div id="Presentacion">
 				<div id="TituloPresentacion">
@@ -103,9 +100,8 @@
 			</div>
 		</section>
 		<!-- Script -->
-		<script type="application/javascript">
+		<script type="text/javascript">
 			
-
 			//Las variables usadas en esta pagina con JS
 			var pregunta=0; //Variable usada para saber la pregunta que hay que visualizar
 			var resultado=0; //Variable usada para saber los resultados, cambiando el valor por cada pregunta
@@ -256,7 +252,43 @@
             	}
 			};
 
-			var arrancar = function arrancar(){
+			class Casas{
+
+				constructor(Nombre,Fundador,Mascota,Colores,Alumnos){
+					this.Nombre = Nombre;
+					this.Fundador = Fundador;
+					this.Mascota = Mascota;
+					this.Colores = Colores;
+					this.Alumnos = Alumnos;
+				}
+
+				get Casa(){
+					var casa = [this.Nombre,this.Fundador,this.Mascota,this.Colores,this.Alumnos];
+					return casa;
+				}
+
+				
+			};
+
+			class Colegios{
+
+				constructor(Nombre,FechaApertura,Director,Materia,Casas){
+					this.Nombre = Nombre;
+					this.FechaApertura = FechaApertura;
+					this.Director = Director;
+					this.Materia = Materia;
+					this.Casas = Casas;
+				}
+
+				get Colegio(){
+					var colegio = [this.Nombre,this.FechaApertura,this.Director,this.Materia,this.Casas];
+					return colegio;
+				}
+
+				
+			};
+
+			function arrancar(){
 	
 				var Gryffindor = new Casas('Gryffindor','Godric Gryffindor','Leon dorado aslan',['Escarlata','dorado'],[]);
 
@@ -270,9 +302,10 @@
 				
 			};
 			//Mostrar datos del colegio e sus casas
-			//function mostrarDatosColegio(){
-
-			//};
+			function mostrarDatos(){
+				console.log(Colegios.Hogwarts.Colegio());
+				console.log(Casas.Gryffindor.Nombre);
+			};
 			
 		</script>
 	</body>
