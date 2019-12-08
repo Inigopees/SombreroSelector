@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sombrero Selector</title>
+		<link rel="stylesheet" type="text/css" href="Estilos/estilo_index.css">
+		<script type="module" src="JS/main.js"></script>
+	</head>
+	<body onload="arrancar()">
+		<section>
+			<div id="Presentacion">
+				<div id="TituloPresentacion">
+					<h1>Sombrero Selector</h1>
+				</div>
+				<img src="Imagenes/Sombrero.jpg" alt="Sombrero selector">
+				<div id="BotonesPresentacion">
+					<button onclick="mostrarPreguntas()">¿A que casa pertenezco?</button>
+					<button onclick="mostrarDatos()">Información sobre las casas</button>
+					<button onclick="mostrarDatos()">Mostrar estudiantes</button>
+				</div>
+			</div>
+			<div id="Cuestionario">
+				<h1>Bloque de preguntas</h1>
+					<div id="CuestParte1" class="Cuestionario">
+						<h2>¿Que asignatura suspenderias en Hogwarts?</h2>
+						<div class="Preguntas">
+							<form action="index.html" method="post">
+								<input type="radio" name="asignaturas" value="astronomia"><label>Astronomia</label>
+								<input type="radio" name="asignaturas" value="vuelo"><label>Vuelo</label>
+								<input type="radio" name="asignaturas" value="historia"><label>Historia de la magia</label>
+								<input type="radio" name="asignaturas" value="pociones"><label>Pociones</label>		
+							</form>
+						</div>
+					</div>
+					<div id="CuestParte2" class="Cuestionario">
+						<h2>Elige tus tres hechizos preferidos</h2>
+						<div class="Preguntas">
+							<form action="index.html" method="post">
+								<label><input type="checkbox" name="hechizos" value="1">Avada-Kedavra</label>
+								<label><input type="checkbox" name="hechizos" value="2">Imperius</label>
+								<label><input type="checkbox" name="hechizos" value="3">Cruciatus</label>
+								<label><input type="checkbox" name="hechizos" value="4">Expecto-Patronum</label>	
+								<label><input type="checkbox" name="hechizos" value="5">Expelliarmus</label>
+								<label><input type="checkbox" name="hechizos" value="6">Wingardium-Leviosa</label>	
+							</form>
+						</div>
+					</div>
+					<div id="CuestParte3" class="Cuestionario">
+						<h2>¿Que ser te aterra mas?</h2>
+						<form action="index.html" method="post">
+							<div class="Preguntas">
+									<div class="carta">
+										<img class="FotosSeres" src="Imagenes/seres/acromantula.jpg" alt="acromantula">
+										<label><input type="radio" name="ser" value="acromantula">Acromantula</label>
+									</div>
+									<div class="carta">
+										<img class="FotosSeres" src="Imagenes/seres/basilisco.jpg" alt="basilisco">
+										<label><input type="radio" name="ser" value="basilisco">Basilisco</label>
+									</div>
+									<div class="carta">
+										<img class="FotosSeres" src="Imagenes/seres/cancerbero.jpg" alt="cancerbero"></br>
+										<label><input type="radio" name="ser" value="cancerbero">Cancerbero</label>
+									</div>
+									<div class="carta">
+										<img class="FotosSeres" src="Imagenes/seres/dementor.jpg" alt="dementor">
+										<label><input type="radio" name="ser" value="dementor">Dementor</label>	
+									</div>
+									<div class="carta">
+										<img class="FotosSeres" src="Imagenes/seres/hipogrifo.jpg" alt="hipogrifo">
+										<label><input type="radio" name="ser" value="hipogrifo">Hipogrifo</label>
+									</div>	
+							</div>
+						</form>
+					</div>
+					<div id="CuestParte4" class="Cuestionario">
+						<h2>¿ Cual de estos grupos palabras te describen mas?</h2>
+						<div class="Preguntas">
+							<form action="index.html" method="post">
+								<input type="radio" name="palabras" value="Gryffindor"><label>Valor, audacia y caballerosidad</label>
+								<input type="radio" name="palabras" value="Hufflepuff"><label>Justicia, lealtad y paciencia</label><br>
+								<input type="radio" name="palabras" value="Ravenclaw"><label>Inteligencia, erudición, creatividad</label>
+								<input type="radio" name="palabras" value="Slytherin"><label>Ambición, determinación y astucia</label>
+							</form>
+						</div>
+					</div>
+					<div id="CuestParte5" class="Cuestionario">
+						<h2>Inserta tus datos</h2>
+						<div class="Preguntas">
+							<form action="index.html" method="post">
+								<label>Inserte tu nombre :<input type="text" name="Nombre"></label><br><br>
+								<label>Inserte tu apellido :<input type="text" name="Apellido"></label><br><br>
+								<button onclick="resultadoPreguntas()">Ver resultado</button>
+								
+							</form>
+						</div>
+					</div>
+				<button id="botonSiguiente" onclick="siguientePregunta()">Siguiente</button>
+			</div>
+			<div id="respuesta">
+
+			</div>
+		</section>
+		<!-- Script -->
+		<script type="text/javascript">
+			//Importamos lo necesario del main.js
+			import {Colegios,Casas, arrancar} from 'JS/main.js';
+
+			//Las variables usadas en esta pagina con JS
+			var pregunta=0; //Variable usada para saber la pregunta que hay que visualizar
+			var resultado=0; //Variable usada para saber los resultados, cambiando el valor por cada pregunta
+
+			//Con esta funcion escondemos el div principal y mostramos la primera pregunta
+			function mostrarPreguntas(){
+				document.getElementById("Presentacion").style.display ="none";
+				document.getElementById("Cuestionario").style.display ="flex";
+				document.getElementById("CuestParte1").style.display ="flex";
+			};
+
+			//Con esta funcion al pulsar el boton cambiamos a la siguiente pregunta
+			function siguientePregunta(){
+				switch (pregunta){
+					case 0:
+						document.getElementById("CuestParte1").style.display ="none";
+						document.getElementById("CuestParte2").style.display ="flex";
+					break;
+
+					case 1:
+						document.getElementById("CuestParte2").style.display ="none";
+						document.getElementById("CuestParte3").style.display ="flex";
+					break;
+
+					case 2:
+						document.getElementById("CuestParte3").style.display ="none";
+						document.getElementById("CuestParte4").style.display ="flex";
+					break;
+
+					case 3:
+						document.getElementById("CuestParte4").style.display ="none";
+						document.getElementById("CuestParte5").style.display ="flex";
+						document.getElementById("botonSiguiente").style.display ="none";
+					break;
+				};
+				pregunta++;
+			};
+
+			//Con esta función recopilamos todas las respuestas e insertamos los datos en el objeto
+			function resultadoPreguntas() {
+				//recogemos la respuesta de la primera pregunta
+				let asignaturas = document.querySelectorAll("input[type='radio']");
+				//recogemos respuestas de la segunda pregunta en la variable
+				let hechizos = document.querySelectorAll("input[type='checkbox']");
+				//recogemos la respuesta de la tercera pregunta
+				let seres = document.querySelectorAll("input[type='radio']");
+				//recogemos la respuesta de la tercera pregunta
+				let adjetivos = document.querySelectorAll("input[type='radio']");
+				//Cogemos el nombre que inserta el usuario
+				let nombre = document.getElementById("Nombre");
+				//Cogemos el apellido que inserta el usuario
+				let apellido = document.getElementById("Apellido");
+
+
+				//Miramos cual ha sido la respuesta del usuario y asignamos un valor a la variable respuesta
+				for(let i=0;i<asignaturas.length;i++){
+                	if(asignaturas[i].checked==true){
+                		switch(asignaturas[i].value){
+                			case "astronomia":
+                				resultado = resultado+5;
+                			break; 
+                			case "vuelo":
+                				resultado += 20;
+                			break;
+                			case "historia":
+                				resultado -= 10;
+                			break;
+                			case "pociones":
+                				resultado += 25;
+                			break;
+                		}
+                	}
+            	};
+
+            	//Segunda pregunta, miramos la respuesta de esta
+            	for(let i=0;i<hechizos.length;i++){
+                	if(hechizos[i].checked==true){
+                		resultado += parseInt(hechizos[i].value);
+                	}
+                }
+
+                //Tercera pregunta, miramos la respuesta
+                for(let i=0;i<seres.length;i++){
+                	if(seres[i].checked==true){
+                		switch(seres[i].value){
+                			case "acromantula":
+                				resultado += 5;
+                			break;
+                			case "basilisco":
+                				resultado -= 20;
+                			break;
+                			case "cancerbero":
+                				resultado += 10;
+                			break;
+                			case "dementor":
+                				resultado += 15;
+                			break;
+                			case "hipogrifo":
+                				resultado -= 3;
+                			break;
+                		}
+                	}
+            	};
+
+            	//Cuarta pregunta, miramos la respuesta
+            	for(let i=0;i<adjetivos.length;i++){
+                	if(adjetivos[i].checked==true){
+                		switch(adjetivos[i].value){
+                			case "Gryffindor":
+                				resultado -= 35;
+                			break;
+                			case "Hufflepuff":
+                				resultado += 20;
+                			break;
+                			case "Ravenclaw":
+                				resultado += 10;
+                			break;
+                			case "Slytherin":
+                				resultado += 15;
+                			break;
+                		}
+                	}
+            	};
+
+            	//Hacemos el calculo de las respuestas para saber a donde irian
+            	if(resultado<=50){
+            		//Gryffindor
+            		
+            	}
+            	else if(resultado>50 && resultado<=70){
+            		//Hufflepuff
+            		
+            	}else if(resultado>70 && resultado<80){
+            		//Ravenclaw
+					
+            	}else{
+            		//Slytherin
+            		
+            	}
+			};
+
+			//Mostrar datos del colegio e sus casas
+			//function mostrarDatosColegio(){
+
+			//};
+
+			//Crear las casas
+			function arrancar(){
+				let casas = {
+					{
+						nombre = 'Gryffindor',
+						fundador ='Godric Gryffindor',
+						mascota = 'Leon dorado aslan',
+						colores = ['Escarlata','dorado'],
+						alumnos = []
+					},{
+						nombre = 'Hufflepuff',
+						fundador ='Helga Hufflepuff',
+						mascota = 'Tejon Negro',
+						colores = ['Amarillo','Negro'],
+						alumnos = []
+					},{
+						nombre = 'Slytherin',
+						fundador ='Salazar Slytherin',
+						mascota = 'Serpiente plateada',
+						colores = ['verde esmeralda','plata'],
+						alumnos = []
+					},{
+						nombre = 'Ravenclaw',
+						fundador ='Rowena Ravenclaw',
+						mascota = 'Aguila de bronce',
+						colores = ['Azul','Bronce'],
+						alumnos = []
+					}
+				};
+				Colegios('Hogwarts',20-1-990,'Albus Dumbledore','Magia y Hechicería',casas);
+			};
+		</script>
+	</body>
+</html>
