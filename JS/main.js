@@ -1,4 +1,4 @@
-export class Casas{
+class Casas{
 
 	constructor(Nombre,Fundador,Mascota,Colores,Alumnos){
 		this.Nombre = Nombre;
@@ -13,7 +13,7 @@ export class Casas{
 	}
 };
 
-export class Colegios{
+class Colegios{
 
 	constructor(Nombre,FechaApertura,Director,Materia,Casas){
 		this.Nombre = Nombre;
@@ -24,7 +24,7 @@ export class Colegios{
 	}
 
 	get Colegio(){
-		var colegio [this.Nombre,this.FechaApertura,this.Director,this.Materia,this.Casas];
+		var colegio = [this.Nombre,this.FechaApertura,this.Director,this.Materia,this.Casas];
 		return colegio;
 	}
 
@@ -35,16 +35,6 @@ export class Colegios{
 
 
 
-export function arrancar(){
-	
-	const Gryffindor = new Casas('Gryffindor','Godric Gryffindor','Leon dorado aslan',['Escarlata','dorado'],[]);
 
-	const Hufflepuff = new Casas('Hufflepuff','Helga Hufflepuff','Tejon Negro',['Amarillo','Negro'],[]);
-	
-	const Slytherin = new Casas('Slytherin','Salazar Slytherin','Serpiente plateada',['verde esmeralda','plata'],[]);
 
-	const Ravenclaw = new Casas('Ravenclaw','Rowena Ravenclaw','Aguila de bronce',['Azul','Bronce'],[]);
-
-	const Hogwarts = new Colegios('Hogwarts',20-1-990,'Albus Dumbledore','Magia y Hechicería',Casas);
-}
-
+export{Colegios,Casas}

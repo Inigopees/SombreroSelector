@@ -3,9 +3,12 @@
 	<head>
 		<title>Sombrero Selector</title>
 		<link rel="stylesheet" type="text/css" href="Estilos/estilo_index.css">
-		<script type="module" src="JS/main.js"></script>
+		<script type="module" src="./JS/main.js">
+			//Importamos lo necesario del main.js
+			import {Casas,Colegios} from "./JS/main.js";
+		</script>
 	</head>
-	<body onload="arrancar()">
+	<body onload="arrancar">
 		<section>
 			<div id="Presentacion">
 				<div id="TituloPresentacion">
@@ -13,15 +16,15 @@
 				</div>
 				<img src="Imagenes/Sombrero.jpg" alt="Sombrero selector">
 				<div id="BotonesPresentacion">
-					<button onclick="mostrarPreguntas()">¿A que casa pertenezco?</button>
-					<button onclick="mostrarDatos()">Información sobre las casas</button>
+					<button onclick="mostrarPreguntas()">A que casa pertenezco?</button>
+					<button onclick="mostrarDatos()">Informacion sobre las casas</button>
 					<button onclick="mostrarDatos()">Mostrar estudiantes</button>
 				</div>
 			</div>
 			<div id="Cuestionario">
 				<h1>Bloque de preguntas</h1>
 					<div id="CuestParte1" class="Cuestionario">
-						<h2>¿Que asignatura suspenderias en Hogwarts?</h2>
+						<h2>Que asignatura suspenderias en Hogwarts?</h2>
 						<div class="Preguntas">
 							<form action="index.html" method="post">
 								<input type="radio" name="asignaturas" value="astronomia"><label>Astronomia</label>
@@ -45,7 +48,7 @@
 						</div>
 					</div>
 					<div id="CuestParte3" class="Cuestionario">
-						<h2>¿Que ser te aterra mas?</h2>
+						<h2>Que ser te aterra mas?</h2>
 						<form action="index.html" method="post">
 							<div class="Preguntas">
 									<div class="carta">
@@ -72,7 +75,7 @@
 						</form>
 					</div>
 					<div id="CuestParte4" class="Cuestionario">
-						<h2>¿ Cual de estos grupos palabras te describen mas?</h2>
+						<h2>Cual de estos grupos palabras te describen mas?</h2>
 						<div class="Preguntas">
 							<form action="index.html" method="post">
 								<input type="radio" name="palabras" value="Gryffindor"><label>Valor, audacia y caballerosidad</label>
@@ -100,9 +103,8 @@
 			</div>
 		</section>
 		<!-- Script -->
-		<script type="text/javascript">
-			//Importamos lo necesario del main.js
-			import {Colegios,Casas, arrancar} from 'JS/main.js';
+		<script type="application/javascript">
+			
 
 			//Las variables usadas en esta pagina con JS
 			var pregunta=0; //Variable usada para saber la pregunta que hay que visualizar
@@ -228,27 +230,50 @@
                 	}
             	};
 
+				//Creamos el alumno
+				let alumno = {
+					'nombre': Nombre,
+					'apellido': Apellido
+				};
+
             	//Hacemos el calculo de las respuestas para saber a donde irian
             	if(resultado<=50){
             		//Gryffindor
-            		
-            	}
-            	else if(resultado>50 && resultado<=70){
+					Gryffindor.alumnos.push(alumno);
+					console.log(Gryffindor.alumnos[0]);
+            	}else if(resultado>50 && resultado<=70){
             		//Hufflepuff
-            		
+					Hufflepuff.alumnos.push(alumno);
+					console.log(Gryffindor.alumnos[0]);
             	}else if(resultado>70 && resultado<80){
             		//Ravenclaw
-					
+					Ravenclaw.alumnos.push(alumno);
+					console.log(Gryffindor.alumnos[0]);
             	}else{
             		//Slytherin
-            		
+					Slytherin.alumnos.push(alumno);
+					console.log(Gryffindor.alumnos[0]);
             	}
 			};
 
+			var arrancar = function arrancar(){
+	
+				var Gryffindor = new Casas('Gryffindor','Godric Gryffindor','Leon dorado aslan',['Escarlata','dorado'],[]);
+
+				var Hufflepuff = new Casas('Hufflepuff','Helga Hufflepuff','Tejon Negro',['Amarillo','Negro'],[]);
+				
+				var Slytherin = new Casas('Slytherin','Salazar Slytherin','Serpiente plateada',['verde esmeralda','plata'],[]);
+
+				var Ravenclaw = new Casas('Ravenclaw','Rowena Ravenclaw','Aguila de bronce',['Azul','Bronce'],[]);
+
+				var Hogwarts = new Colegios('Hogwarts','20-1-990','Albus Dumbledore','Magia y Hechicería',Casas);
+				
+			};
 			//Mostrar datos del colegio e sus casas
 			//function mostrarDatosColegio(){
 
 			//};
+			
 		</script>
 	</body>
 </html>
