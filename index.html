@@ -8,7 +8,7 @@
 			import {Casas,Colegios} from "./JS/main.js";
 		</script>
 	</head>
-	<body onload="arrancar">
+	<body onload="arrancar()">
 		<section>
 			<div id="Presentacion">
 				<div id="TituloPresentacion">
@@ -103,7 +103,7 @@
 			</div>
 		</section>
 		<!-- Script -->
-		<script type="application/javascript">
+		<script type="text/javascript">
 			
 
 			//Las variables usadas en esta pagina con JS
@@ -176,16 +176,16 @@
                 			case "pociones":
                 				resultado += 25;
                 			break;
-                		}
-                	}
+                		};
+                	};
             	};
 
             	//Segunda pregunta, miramos la respuesta de esta
             	for(let i=0;i<hechizos.length;i++){
                 	if(hechizos[i].checked==true){
                 		resultado += parseInt(hechizos[i].value);
-                	}
-                }
+                	};
+                };
 
                 //Tercera pregunta, miramos la respuesta
                 for(let i=0;i<seres.length;i++){
@@ -206,8 +206,8 @@
                 			case "hipogrifo":
                 				resultado -= 3;
                 			break;
-                		}
-                	}
+                		};
+                	};
             	};
 
             	//Cuarta pregunta, miramos la respuesta
@@ -226,8 +226,8 @@
                 			case "Slytherin":
                 				resultado += 15;
                 			break;
-                		}
-                	}
+                		};
+                	};
             	};
 
 				//Creamos el alumno
@@ -239,24 +239,24 @@
             	//Hacemos el calculo de las respuestas para saber a donde irian
             	if(resultado<=50){
             		//Gryffindor
-					Gryffindor.alumnos.push(alumno);
+					Gryffindor.AñadirAlumnos(alumno);
 					console.log(Gryffindor.alumnos[0]);
             	}else if(resultado>50 && resultado<=70){
             		//Hufflepuff
-					Hufflepuff.alumnos.push(alumno);
+					Hufflepuff.AñadirAlumnos(alumno);
 					console.log(Gryffindor.alumnos[0]);
             	}else if(resultado>70 && resultado<80){
             		//Ravenclaw
-					Ravenclaw.alumnos.push(alumno);
+					Ravenclaw.AñadirAlumnos(alumno);
 					console.log(Gryffindor.alumnos[0]);
             	}else{
             		//Slytherin
-					Slytherin.alumnos.push(alumno);
+					Slytherin.AñadirAlumnos(alumno);
 					console.log(Gryffindor.alumnos[0]);
-            	}
+            	};
 			};
 
-			var arrancar = function arrancar(){
+			function arrancar(){
 	
 				var Gryffindor = new Casas('Gryffindor','Godric Gryffindor','Leon dorado aslan',['Escarlata','dorado'],[]);
 
@@ -265,6 +265,8 @@
 				var Slytherin = new Casas('Slytherin','Salazar Slytherin','Serpiente plateada',['verde esmeralda','plata'],[]);
 
 				var Ravenclaw = new Casas('Ravenclaw','Rowena Ravenclaw','Aguila de bronce',['Azul','Bronce'],[]);
+
+				var Casas = [Gryffindor,Hufflepuff,Slytherin,Ravenclaw];
 
 				var Hogwarts = new Colegios('Hogwarts','20-1-990','Albus Dumbledore','Magia y Hechicería',Casas);
 				

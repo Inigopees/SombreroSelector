@@ -9,7 +9,7 @@ class Casas{
 	}
 
 	set AñadirAlumnos(alumno){
-		this.Alumno = alumno;
+		this.Alumnos = push(alumno);
 	}
 };
 
